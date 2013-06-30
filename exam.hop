@@ -1,0 +1,12 @@
+dec Ncifras: num->num;
+--- Ncifras(n)<= if n<10 then 1
+                                     else 1 + Ncifras(n div 10);
+                                    
+dec SacaN: num#num#num->num;
+--- SacaN(pos, n, cont)<= if (pos=cont) then (n mod 10)
+                                                                  else SacaN(pos, n div 10, cont-1);
+                                                                  
+dec Iesimo: num#num->num;
+--- Iesimo(pos, n)<= if Ncifras(n)< pos then (0-1)
+                                                             else SacaN(pos, n, Ncifras(n));
+                                      

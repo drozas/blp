@@ -1,0 +1,6 @@
+!Multiplicación de fracciones, con declaracion de tipo fraccion:
+
+
+data tFraccion == F(num#num);
+dec MultFraccion: tFraccion#tFraccion->tFraccion;
+--- MultFraccion(F(a,b),F(c,d))<=F(a*c,b*d);

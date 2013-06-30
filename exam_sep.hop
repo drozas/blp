@@ -1,0 +1,29 @@
+!Septiembre 2002
+!---------------------------
+
+!A. Definir un tipo de datos que represente una ficha
+
+data NumFicha== blanca++uno++dos++tres++cuatro++cinco++seis;
+data Ficha== F(NumFicha#NumFicha);
+
+!B. Definir un tipo de datos que albergue las fichas d un jugador
+
+data FichasJugador== FJ(list(Ficha));
+
+!C. Definir un tipo de datos que albergue las fichas aun no colocadas
+
+data FichasNoColocadas== FNC(FichasJugador#FichasJugador#FichasJugador#FichasJugador);
+
+!D. Definir una función que averigüe si en una jugada hay o no un seis doble
+
+dec HaySeisDoble: FichasJugador-> truval;
+--- HaySeisDoble(FJ(nil))<=false;
+--- HaySeisDoble(FJ(F(x,y)::resto))<= if x=seis and y=seis then true
+                                                                                    else HaySeisDoble(FJ(resto));
+                                                                                    
+!E. Definir una funcion que nos diga cuantas veces aparece esa jugada
+
+dec CuantasJugada: Ficha#FichasJugador->num;
+--- CuantasJugada(F(x,y), FJ(nil))<= 0;
+--- CuantasJugada(F(x,y), FJ(F(a,b)::resto))<= if x=a and y=b then 1 + CuantasJugada(F(x,y), FJ(resto));
+                                                                                                else CuantasJugada(F(x,y), FJ(resto));

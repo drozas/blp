@@ -1,0 +1,10 @@
+!Realizamos la suma de los digitos, con SumaDigitos
+!Y con es pareado se comprueba que sea para el sumatorio
+
+dec EsPareado: num->truval;
+
+dec SumaDigitos: num->num;
+
+--- SumaDigitos(x)<= if x <10  then x else ((x mod 10) + SumaDigitos(x div 10));
+
+--- EsPareado(n)<= if (SumaDigitos(n) mod 2=0) then true else false;

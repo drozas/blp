@@ -1,0 +1,24 @@
+!EJERCICIOS DE LOS EXAMENES ANTERIORES
+!***************************************************
+
+!Junio 2002
+!-----------------
+
+!A. Escribir en Hope+ una función que evalue un polinomio
+
+
+data monomio == M(real#num);
+data polinomio == P(list(monomio));
+
+dec EvaluaPolinomio: real#polinomio->real;
+--- EvaluaPolinomio(val, P(nil))<=0.0;
+--- EvaluaPolinomio(val, P(M(coef,exp)::resto))<= (val ^ float(exp)) * coef + EvaluaPolinomio(val, P(resto));
+
+!B. Hacer una funcion que permita insertar un monomio, devolviendo el polinomio de forma ordenada:
+
+dec InsertarMonomio: monomio#polinomio-> polinomio;
+--- InsertarMonomio(M(coef,exp), P(nil))<=P(nil);
+--- InsertarMonomio(M(coef,exp), P(M(c,e)::resto))<= if (exp > e) then P(M(c,e)::resto)
+                                                                                                else InsertarMonomio(M(coef,exp), P(resto));
+                                                                                                
+

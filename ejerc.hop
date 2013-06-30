@@ -1,0 +1,113 @@
+!EJERCICIOS DE APUNTES DEL PROFESOR:
+!************************************************
+
+! 1. Función que calcule el doble de un numero
+
+dec doble: num->num;
+--- doble(n)<= 2*n;
+
+! 2. Función que diga si un numero es par
+
+dec esPar: num->truval;
+--- esPar(n)<= if n mod 2 =0 then true
+                                             else false;
+                                            
+! 3. Función que diga si un numero es impar, apoyándose en la del par
+
+dec esImpar: num->truval;
+--- esImpar(n)<= not(esPar(n));
+
+! 4. Función que obtenga el menor de dos numeros
+
+infix menor : 5;
+dec menor: num#num->num;
+--- x menor y <= if x< y then x
+                                      else y;
+                                      
+! 7. Funcion que determine si un caracter es minuscula o mayuscula. Si es minuscula devuelve el caracter, y si no devuelve false.
+
+dec esMinuscula: char->truval;
+--- esMinuscula(c)<= if ( ord(c)>= ord('a') ) and ( ord(c)=< ord('z')) then true
+                                                                                                      else false;
+                                                                                                      
+! 8. Funcion que convierta un caracter a minuscula si es mayuscula. Si no, devuelve el caracter.
+
+dec PasarAMinuscula: char->char;
+--- PasarAMinuscula(c)<= if (ord(c)>= ord('A')) and (ord(c)=< ord('Z')) then chr(ord(c)+32)
+                                                                                                           else c;
+                                                                                                         
+! 9.Dada una expresion en la que se muestra la ficha (X o O) y las coordenadas, hacer una 
+!????????????????????????????????????????????
+
+! 10. Hacer una expresión que te devuelva la segunda coordenada de la ficha
+!???????????????????????????????????????????????
+
+! 11. Hacer una fucion que dado un dia de la semana, te devuelva el siguiente
+data tDia== lunes++martes++miercoles++jueves++viernes++sabado++domingo;
+dec diaSiguiente: tDia->tDia;
+--- diaSiguiente(dia)<= if dia=lunes then martes
+                                    else if dia=martes then miercoles
+                                    else if dia=miercoles then jueves
+                                    else if dia=jueves then viernes
+                                    else if dia=viernes then sabado
+                                    else if dia=sabado then domingo
+                                    else lunes;
+
+! 12.Hacer una funcion que diga si un dia es o no festivo
+!data tDia== lunes++martes++miercoles++jueves++viernes++sabado++domingo;
+dec esFestivo: tDia->truval;
+---esFestivo(dia)<= if (dia=sabado) or (dia=domingo) then true
+                                                                                        else false;
+
+!13. Hacer una funcion que te diga si hoy es primero de año del 2003
+
+dec esAnoNuevo: num#num#num-> truval;
+--- esAnoNuevo(d,m,a)<= if (d=1) and (m=1) and (a=2003) then true
+                                                                                            else false;
+                                                                                          
+! 14. Hacer una funcion que calcule el NOR (or negado), de forma infija
+infix NOR : 6;
+dec NOR: truval#truval-> truval;
+--- x NOR y<= not(x or y);
+
+! 15. Funcion que dada la tabla, determine los unos del circuito;
+
+dec circuito: num#num#num->num;
+--- circuito(c,b,a)<= if ( (c=0) and (b=1) and (a=0) ) then 1
+                   else if ( (c=0) and (b=1) and (a=1) ) then 1
+                   else if ( (c=1) and (b=0) and (a=0) )then 1
+                   else 0;
+                   
+! 16.Funcion que dada la letra y el numero de horas, determine el sueldo de la persona
+
+dec Sueldo: char#real->real;
+--- Sueldo(c,h)<= if c='a' then 7000000.0 + h*10000.0
+                           else if c='d' then 5000000.0 + h*3000.0
+                           else 500000.0;
+                           
+! 17. Funcion que dados un par de numeros te los ordene de mayor a menor
+
+dec Ordena: num#num->num#num;
+--- Ordena(x,y)<= if x> y then (x,y)
+                                       else (y,x);
+
+!EJEMPLOS DE PROGRAMACION RECURSIVA
+!************************************************
+                                     
+! Ej.: Algoritmo de suma lenta
+
+dec Suma: num#num->num;
+--- Suma(x,0)<= x;
+--- Suma(x,y)<= 1+ Suma(x, y-1);
+
+! Ej.: Potencia con base real y exponente entero
+
+dec Pot: real#num->real;
+--- Pot(b, 0)<=1.0;
+--- Pot(b, exp)<= b*Pot(b, exp-1);
+
+! Ej.: Calculo del factorial
+
+dec factorial: num-> num;
+--- factorial(0)<= 1;
+--- factorial(n)<= n* factorial(n-1); 

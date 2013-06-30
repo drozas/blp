@@ -1,0 +1,8 @@
+!Hacemos una funcion que calcule el numero de cifras
+!Para concatenarlos hay que sumarle al numero 2, el numero 1 aumentao ç
+!exponencialmente "tanto como numero 2"
+
+dec Ncifras: num-> num;
+dec concatNumeros: num#num->num;
+--- Ncifras(n)<= if n<10 then 1 else  (1+Ncifras(n  div 10));
+--- concatNumeros(num1, num2)<= (num1 * 10^Ncifras(num2) ) + num2;

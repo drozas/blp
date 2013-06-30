@@ -1,0 +1,15 @@
+!PRACTICA 7
+!*************
+
+!1. Borrar elemento:
+!================
+!Realizar una función que dado un elemento lo borre de una lista tantas veces como aparezca
+
+dec BorrarElemento: alpha#list(alpha)->list(alpha);
+--- BorrarElemento(x, nil)<= nil;
+--- BorrarElemento(x, y::resto_lista)<= if x=y then BorrarElemento(x, resto_lista)
+                                                                        else y::BorrarElemento(x, resto_lista);
+
+
+!Cuando queremos unir un elemento a una lista utilizamos ::
+!Cuando queremos unir dos listas <>

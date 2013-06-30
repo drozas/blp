@@ -1,0 +1,68 @@
+!Practica 6 A
+!==========
+
+!Diseñar en Hope:
+! 1. Un tipo de datos que permita representar Euros (expresados como una cantidad entera y quizás centimos) y
+!      Reales (expresados como una cantidad entera).
+
+!2. Una funcion que convierta entre reales y euros, y viceversa. Hay que tener en cuenta que 6 euros son mil pesetas
+!     y una peseta son 4 reales. 
+
+!NOTA: (Se producen pérdidas de decimales en el paso de pesetas a euros , y no se pueden introducir centimos en 
+! el paso de euros a pesetas, solo euros completos)
+! Para pasar de euros a reales pasamos primero a pesetas
+! Para pasar de reales a euros también pasamos primero los reales a pesetas
+
+data EURO == E(num);
+data REAL == R(num);
+
+dec EurosPtas: EURO -> num;
+dec PtasReales: num->REAL;
+dec RealesPtas: REAL->num;
+dec PtasEuros: num->EURO;
+dec RealesEuros: REAL->EURO;
+dec EurosReales: EURO->REAL;
+
+--- EurosPtas(E(n))<= round(166.386*float(n));
+--- PtasReales(n)<= R(n*4);
+--- RealesPtas(R(n))<= round(float(n)*0.25);
+--- PtasEuros(n)<= E(round(float(n)/166.386));
+--- RealesEuros(R(n))<= PtasEuros(RealesPtas(R(n)));
+--- EurosReales(E(n))<= PtasReales(EurosPtas(E(n))); 
+
+!********************************************************************
+!                 SOLUCIONES DE LA WEB
+!********************************************************************
+!*******************
+! PARTE I
+!*******************
+
+data MONEDA == Euros (num#num) ++ Reales (num);
+
+dec convertir: MONEDA -> MONEDA;
+--- convertir Euros (unid,cent) 
+	<= let factor == 166.386*4.0
+	   in Reales (trunc((float(unid) + float (cent)/100.0) * factor));
+
+--- convertir Reales (cant) 
+	<= let factor == 166.386*4.0
+	   in let unid_euros == trunc (float(cant)/factor)
+	      in Euros (unid_euros, 
+	      		       trunc(((float(cant)-factor*float(unid_euros))/factor)*100.0));	   
+	      		       
+!Solucion 2
+
+data MONEDA2 == Euros2 (real) ++ Reales2 (num);
+
+dec Convertir2 : MONEDA2 -> MONEDA2;
+--- Convertir2 Euros2 (cantEuro) 
+	<= let factor == 166.386*4.0
+	   in Reales2 (trunc(cantEuro*factor));
+	   
+--- Convertir2 Reales2 (cantReal)
+	<= let factor == 166.386*4.0	   
+	   in Euros2 (float(cantReal) / factor);	
+
+
+
+

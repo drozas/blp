@@ -1,0 +1,14 @@
+!Concatenar sublistas:
+!***********************
+!Dada una lista de listas, se quiere obtener una lista donde las sublistas anteriores se hayan concatenado
+
+
+
+dec UnirListas: list(list(alpha))->list(alpha);
+--- UnirListas(nil)<= nil;
+--- UnirListas(listaOrigen::RestoListas)<=listaOrigen<>UnirListas(RestoListas);
+
+!Hay que tener en cuenta que al llamar a la funcion estamos sacando un elemento;
+!luego hay que sacarlo con ::
+!Pero despues, al trabajar con el, se trata de una lista. Así que habrá que concatenarlo
+! como una lista, es decir  con <>

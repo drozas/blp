@@ -1,0 +1,9 @@
+!CALCULO DE UNA RAIZ
+!float(n) es para transformarlo a real...
+
+dec raiz2E : num -> real;
+dec raiz2R : real -> real;
+dec  MEDIO : real;
+--- MEDIO <= 0.5;
+--- raiz2E(n) <= float(n) ^ MEDIO;
+--- raiz2R(n) <= n ^ MEDIO;

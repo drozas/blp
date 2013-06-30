@@ -1,0 +1,82 @@
+!Practica 6-2
+!==========
+
+!1. Definir un tipo de datos fecha, con dia, mes y año.
+!2. Codificar la función EsCapicua, que tiene que ver que sean capicuas cada uno de los elementos...
+!         ej: 3 - 11- 2002
+!Utilizaremos también la funcion de ejercicios anteriores...NUMCIFRAS
+
+data FECHA == F(num#num#num);
+
+
+dec Ncifras: num-> num;
+dec esFechaCapicua: FECHA-> truval;
+dec esCapicuaDia: num->truval;
+dec esCapicuaMes: num->truval;
+dec esCapicuaAno: num->truval;
+
+--- Ncifras(n)<= if n<10 then 1 else  (1+Ncifras(n  div 10));
+--- esFechaCapicua(F(dia,mes,ano))<= if esCapicuaDia(dia) and esCapicuaMes(mes) and esCapicuaAno(ano) then true else false;
+
+! Dia será capicua solo si o tiene una sola cifra, o si la primera es igual que la segunda (no puede haber más de dos)
+
+--- esCapicuaDia(n)<=if ( Ncifras(n)=1) or ( (n mod 10)=(n div 10) ) then true 
+                                  else false;
+
+! El mismo razonamiento ocurre en el mes; donde serán capicuas los de una cifra y 11 (o el de dos cifras con numeros iguales)
+
+--- esCapicuaMes(n)<= if ( Ncifras(n)=1 ) or ( (n mod 10)=(n div 10) ) then true 
+                                     else false;
+
+! El caso del año es mas complicado:
+!  - Si tiene una cifra...es capicua
+!  - Si tiene dos cifras, es capicua solo si las dos son iguales
+!  - Si tiene tres cifras la primera(n mod 100) tiene que ser igual a la última (n div 100)
+!  - Si tiene cuatro cifras la primera(n mod 1000) tiene que ser igual a la última (n div 1000); 
+!      y la segunda((n div 100) mod 10) a la tercera((n div 10) mod 100)
+
+--- esCapicuaAno(n)<= if (Ncifras(n)=1 )
+                                       or ( ( Ncifras(n)=2 ) and ( (n mod 10) = (n div 10) ) ) 
+                                       or ( ( Ncifras(n)=3 ) and ( (n mod 100) = (n div 100)))
+                                       or ( ( Ncifras(n)=4 ) and ( ( (n mod 1000) = (n div 1000) ) ) and  ( ( (n div 100) mod 10) = ( (n div 10) mod 100) ) )
+                                       then true
+                                       else false;
+
+
+!*******************************************************************
+!                  SOLUCIÓN DE LA WEB
+!*******************************************************************
+!*******************
+! PARTE II
+!*******************
+
+
+! Decide si una fecha es capicua, es decir si lo son simultaneamente
+! el día, mes y anio componentes
+
+! declaracion del tipo FECHA
+
+!data FECHA == Fecha(num#num#num);
+
+! funciones auxiliares
+
+!dec invertir : num -> num; 
+!   dec potDe10Mayor : num -> num;
+!   --- potDe10Mayor n <=
+!          if n < 10
+!          then 1
+!          else 10 * potDe10Mayor (n div 10);
+!--- invertir n <=
+!       if n < 10
+!       then n
+!       else (n mod 10) * potDe10Mayor n + invertir (n div 10);
+
+!dec esCapicua: num -> truval;
+!   --- esCapicua n <= (n = invertir (n));
+
+! funcion principal
+
+!dec esFechaCapicua: FECHA -> truval;
+!--- esFechaCapicua (Fecha(dd, mm, aa)) <=
+!      esCapicua (dd) and esCapicua (mm) and esCapicua (aa);
+	    

@@ -1,0 +1,24 @@
+!MINIMO
+!========
+!Extraer el menor de los elementos de una lista de enteros
+
+!Versión mala: te requiere meter un valor inicial...
+!dec Minimo: num#list(num)->num;
+!--- Minimo(min, nil)<=min;
+!--- Minimo(min, x::resto)<= if x<min then Minimo(x, resto)
+                                                         !else Minimo(min, resto);
+
+dec BorrarElemento: alpha#list(alpha)->list(alpha);
+--- BorrarElemento(x, nil)<= nil;
+--- BorrarElemento(x, y::resto_lista)<= if x=y then BorrarElemento(x, resto_lista)
+                                                                        else y::BorrarElemento(x, resto_lista);
+                                                         
+!Versión guapa: no hace falta que metamos valor inicial. Extraemos dos elementos de la
+!lista, y vamos comparando...             
+dec Minimo:list(num)->num;
+--- Minimo(c::nil)<=c;
+--- Minimo(c::x::resto)<= if x<c then Minimo(x::resto)
+                                                         else Minimo(c::resto);
+ 
+dec Extraer: list(num)->num#list(num);
+--- Extraer(lista)<=(Minimo(lista), BorrarElemento(Minimo(lista), lista));
